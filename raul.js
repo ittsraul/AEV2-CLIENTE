@@ -12,41 +12,8 @@ Deleteboard();*/
  /* let keyContent = ""; */
 body.addEventListener("keydown", (event)=>{
     event.preventDefault();
-    if (event.key == "A" ) { 
-        letras+="A";
-        console.log("a");
-        if (event.key == "B") {
-            letras+=event;
-            if (event.key == "R") {
-                letras+=event;
-                if (event.key == "A") {
-                    letras+=event;
-                    if (event.key == "C") {
-                        letras+=event;
-                        if (event.key == "A") {
-                            letras+=event;
-                            if (event.key == "D") {
-                                letras+=event;
-                                if (event.key == "A") {
-                                    letras+=event;
-                                    if (event.key == "B") {
-                                        letras+=event;
-                                        if (event.key == "R") {
-                                            letras+=event;
-                                            if (event.key == "A") {
-                                                letras+=event;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }else{
-        return "error";
-    }
-    console.log(letras);
+
+    
+    console.log(event.key);
+
 });
