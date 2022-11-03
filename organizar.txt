@@ -1,10 +1,10 @@
 tareas a realizar:
-a ) Eliminar el teclado
-b ) Añadir el teclado
-c ) escribir con el teclado
-d ) Eliminar el teclado
-e ) Comenzar el juego
-f ) lógica del juego 1
-g ) lógica del juego 2
-h ) lógica del juego 3
-i ) resultado
+a ) Eliminar el teclado 	Raul
+b ) Añadir el teclado		Raul
+c ) escribir con el teclado	Natalia
+d ) Eliminar el teclado		Raul
+e ) Comenzar el juego		Natalia
+f ) lógica del juego 1		Sergio
+g ) lógica del juego 2		Sergio
+h ) lógica del juego 3		Tino
+i ) resultado			Tino
