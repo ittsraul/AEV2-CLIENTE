@@ -14,14 +14,13 @@ teclado.addEventListener("click", function (e) {
 });
 
 
-/* evento de teclado para que cuando se pulse la tecla ENTER se guarde la palabra en el navegador, de forma que los datos persistan cuando se cierren las pestañas o se refresque la 
-página */
+/* evento de teclado para que cuando se pulse la tecla ENTER se guarde la palabra en el navegador, de forma que los datos persistan cuando se cierren las pestañas o se refresque la página */
 let enter = document.getElementsByTagName("form")[0];
-
-enter.addEventListener("submit", function () {
-    id++;
+enter.addEventListener("submit", function (e) {
+    e.preventDefault();
     window.localStorage.setItem(id, JSON.stringify(palabra));
-    
+    id++;
+    palabra = "";
 });
 
 
