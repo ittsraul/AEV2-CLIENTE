@@ -27,7 +27,8 @@ function LogitudaPal(palabra) {
 }
 
 function Desordenada(palabra) {
- 
-
+    let pala=palabra.toLowerCase()
+    let shuffled = pala.split('').sort(function(){return 0.5-Math.random()}).join('');
+    console.log(shuffled)
 }
 
