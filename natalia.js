@@ -24,6 +24,29 @@ enter.addEventListener("submit", function (e) {
 });
 
 
+/* Cuando un usuario haga click sobre el título de primer nivel “Let’s Play!” se 
+iniciará el juego. Para ello, se recogerán una a una las palabras guardadas en el 
+navegador y se realizará con cada una de ellas una petición HTTP GET a la 
+siguiente API pública:
+https://api.dictionaryapi.dev/api/v2/entries/en/<word>
+*/
+
+let titulo = document.getElementsByTagName("h1")[0];
+titulo.addEventListener("click", function (e) {
+    e.preventDefault();
+    for (let i = 0; i < id; i++) {
+        let palabra = JSON.parse(localStorage.getItem(i));
+        let url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => console.log(error));
+    }
+});
+
+
 
 
 
