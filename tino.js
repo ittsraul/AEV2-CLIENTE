@@ -1,19 +1,16 @@
 let palabras = ["Software", "Developer", "Engineer", "Ratio", "Flash"];
 
-let definiciones = ["Encoded computer instructions, usually modifiable (unless stored in some form of unalterable memory such as ROM)", "A real estate developer; a person or company who prepares a parcel of land for sale, or creates structures on that land.", "ingeniero", "Ratio", "Flash"];
-/* 
-Pasos para realizar el f)
-1. sacar la longitud de cada palabra
-2. crear tantos elementos azules como letras tenga la palabra
-3. Mostrar por pantalla la palabra desordenada
-4. Crear otra tabla con las definiciones
-*/
+let definiciones = [["Encoded computer instructions, usually modifiable (unless stored in some form of unalterable memory such as ROM)", "una patata"], ["A real estate developer; a person or company who prepares a parcel of land for sale, or creates structures on that land."], ["ingeniero"], ["Ratio"], ["Flash"]];
 
-ElementsGenerar(8)
-MostrarDesordenada("vedleoep")
+let grabOrDrop = "grab";
+let grabbed = "";
+
+ElementsGenerar(LogitudaPal(palabras[0]))
+MostrarDesordenada(Desordenada(palabras[0]));
+mostrarDefs(definiciones[0]);
+
 function ElementsGenerar(cantElements){
     /* Genera los cuadrados azules necesarios para cada palabra */
-
     let table = document.getElementsByTagName("table")[0];
     let elem = table.getElementsByClassName("activity")[0];
 
@@ -23,6 +20,7 @@ function ElementsGenerar(cantElements){
         let td = document.createElement("td")
         td.classList.add("activity");
         table.appendChild(td);
+        clickListeners(td);
     }
 }
 
@@ -35,14 +33,42 @@ function removeAll(table)
 
 function MostrarDesordenada(palabra)
 {
+    /* Una vez obtenemos la palabra desordenada la muestra en sus respectivos elementos */
     let activity = document.getElementsByClassName("activity");
     let arrPalabra = palabra.split("");
-    for (let i = 0; i < 8; i++) {
+
+    for (let i = 0; i < LogitudaPal(palabra); i++) {
         activity[i].innerHTML = arrPalabra.shift();
     }
 }
 
-let shuffled = prueba.split('').sort(function(){return 0.5-Math.random()}).join('');
+function mostrarDefs(definitions)
+{
+    /* muestra las definiciones de las palabras en la tabla amarilla */
+    let table = document.getElementsByTagName("table")[1];
+
+    for (let i = 0; i < definitions.length; i++) {
+        let tr = document.createElement("tr")
+        let td = document.createElement("td");
+        td.textContent = definitions[i];
+        table.appendChild(tr).appendChild(td);
+
+        td.style.fontSize = "1.3em";
+        td.style.margin = "1px";
+        td.style.padding = "10px";
+        td.style.backgroundColor = "yellow";
+    }
+}
+
+function clickListeners(td)
+{
+    td.addEventListener("click", function(){
+        if (grabOrDrop == "grab") {
+            grabbed = td;
+        }
+    });
+}
+
 /* 
 Pasos para realizar el g)
 1. Evento de click
@@ -55,3 +81,15 @@ Pasos para realizar el g)
 Pasos para realizar el h)
 1. Cada vez que se le da al titulo cambia de palabra y la desordena
 */
+
+function LogitudaPal(palabra) {
+    
+    return(palabra.length)
+
+}
+
+function Desordenada(palabra) {
+    let pala=palabra.toLowerCase()
+    let shuffled = pala.split('').sort(function(){return 0.5-Math.random()}).join('');
+    return shuffled;
+}
