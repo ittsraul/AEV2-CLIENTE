@@ -1,1 +1,9 @@
 tareas a realizar:
+a ) Eliminar el teclado
+b ) Añadir el teclado
+c ) escribir con el teclado
+d ) Eliminar el teclado
+e ) Comenzar el juego
+f ) lógica del juego 1
+h ) lógica del juego 2
+i ) resultado
