@@ -9,8 +9,11 @@ let id = 0;
 /* evento de ratón click sobre las letras del teclado de forma que se irán almacenando en una variable cada una de las letras pulsadas */
 teclado.addEventListener("click", function (e) {
     letra = e.target.textContent;
+    //que no guarde el valor de la letra enter
+    if (letra != "Enter") {
     palabra += letra;
     console.log(palabra);
+    }
 });
 
 
