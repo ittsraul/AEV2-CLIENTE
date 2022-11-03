@@ -5,5 +5,6 @@ c ) escribir con el teclado
 d ) Eliminar el teclado
 e ) Comenzar el juego
 f ) lógica del juego 1
-h ) lógica del juego 2
+g ) lógica del juego 2
+h ) lógica del juego 3
 i ) resultado
