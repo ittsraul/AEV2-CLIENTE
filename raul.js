@@ -1,7 +1,7 @@
-//Captura de el body
+//keep the body
 let body = document.body;
 
-//Captura de Teclado
+//keep the keyboard
 let keyboard = document.getElementById("keyboard-cont");
 
 //borrado de teclado
@@ -15,25 +15,18 @@ Deleteboard();
 //Variable container with words we have introduced
 let letras = "";
 
+//Fucnction for create the keyboard
+function CreateKeyboard(){
+    body.appendChild(keyboard);
+} 
+
 //function for make keyboard event to unlock it
-/* function AppearsKeyboard() {
+function AppearsKeyboard() {
     body.addEventListener("keydown", (event) => {
             letras += event.key;
             checkAWord();
     });
 }
-
- function CreateKeyboard(){
-    let div = document.Createe("div");
-    let forms = document.createElement("form");
-    let div2 = document.createElement("div");
-    let button = document.createElement("button");
-    
-    body.appendChild(div);
-    div.appendChild(forms);
-    forms.appendChild(div2);
-    div2.appendChild(button);
-} 
 
 //function for check the words we introduced in the keyboard
 function checkAWord()
@@ -43,9 +36,7 @@ function checkAWord()
             if (letras == "abrakadabra") {
                 console.log("funciona y tiene " + letras.length + " de longitud");
                 letras = ""; 
-                // CreateKeyboard();
-                // console.log(letras);
-                return true;
+                CreateKeyboard();
             }else{
                 letras = "";
             }
@@ -54,33 +45,30 @@ function checkAWord()
 }
 
 //Call the function to make Appears the keyboard
-AppearsKeyboard(); */
-
+AppearsKeyboard(); 
+ 
+let letrasDesaparcer = "";
 //Function to make Disappears the keyboard
-function DisappearsKeyboard() {
     body.addEventListener("keydown", (event) => {
-        letras -= event.key;
+        letrasDesaparcer += event.key;
         checkDWord();
     });
-}
+
 
 //function to make check of the words
 function checkDWord() {
-    if (letras.length == 11) {
-        for (let j = 0; j < letras.length; j++) {
-            if (letras == "patadecabra") {
-                console.log("funciona y tiene " + letras.length + " de longitud");
-                letras="";
+    if (letrasDesaparcer.length == 11) {
+        for (let j = 0; j < letrasDesaparcer.length; j++) {
+            if (letrasDesaparcer == "patadecabra") {
+                console.log("funciona y tiene " + letrasDesaparcer.length + " de longitud");
+                letrasDesaparcer="";
                 Deleteboard();
             } else {
-                alert("error");
+                letrasDesaparcer="";
             }
         }
-    } else {
-        alert("error");
     }
-
-}
+} 
 
 //Call the function to make Disappears the keyboard
-DisappearsKeyboard(); 
+  
