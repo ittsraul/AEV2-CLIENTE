@@ -73,6 +73,7 @@ function checkDWord() {
 /* End Raúl */
 
 /* NATÀLIA */
+
 // Variables    
 /* let teclado = document.getElementById("keyboard-cont"); */
 let letra = "";
