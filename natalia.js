@@ -4,6 +4,7 @@
         let letra = "";
         let palabra = "";
         let id = 0;
+        let url = "";
         let data = [];
 
 
@@ -45,8 +46,8 @@
             e.preventDefault();
 
             for (let i = 0; i < localStorage.length; i++) {
-                let palabra = JSON.parse(localStorage.getItem(i));
-                let url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
+                palabra = JSON.parse(localStorage.getItem(i));
+                url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
