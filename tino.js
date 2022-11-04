@@ -78,29 +78,6 @@ function clickListeners(td)
     });
 }
 
-    //para raul
-let palabraPrueba = "";
-document.addEventListener("keydown", function(e) {
-    palabraPrueba += e.key;
-    comprobarSecreto();
-})
-console.log("abrakadabra".length)
-function comprobarSecreto()
-{
-    if (palabraPrueba.length == 11) {
-        
-
-        for (let i = 0; i < palabraPrueba.length; i++) {
-            if (palabraPrueba == "abrakadabra") {
-                console.log("funciona")
-                palabraPrueba = "";
-                return true;
-            }else{
-                palabraPrueba = "";
-            }
-        }
-    }
-}
 
 /* 
 Pasos para realizar el h)
