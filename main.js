@@ -128,6 +128,16 @@ function api(e) {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                
+                ElementsGenerar(LogitudaPal(data[0].word))
+                MostrarDesordenada(Desordenada(data[0].word));
+
+                let definitions = data[0].meanings[0].definitions;
+                let defArray = [];
+                for (let i = 0; i < definitions.length; i++) {
+                    defArray.push(definitions[i]["definition"])
+                }
+                mostrarDefs(defArray);
             })
             .catch(error => console.log(error));
     }
@@ -135,3 +145,99 @@ function api(e) {
 };
 
 /* final NATÀLIA */
+
+/* Tino y Sergio */
+
+
+
+let grabOrDrop = "grab";
+let grabbed = "";
+let grabbed2 = "";
+let lastTd = "";
+
+
+
+function ElementsGenerar(cantElements){
+    /* Genera los cuadrados azules necesarios para cada palabra */
+    let table = document.getElementsByTagName("table")[0];
+    let elem = table.getElementsByClassName("activity")[0];
+
+    removeAll(table);
+
+    for (let i = 0; i < cantElements; i++) {
+        let td = document.createElement("td")
+        td.classList.add("activity");
+        table.appendChild(td);
+        clickListeners(td);
+    }
+}
+
+function removeAll(table)
+{
+    /* limpia todos los cuadrados azules. Se llama desde ElementsGenerar */
+
+    table.innerHTML = "";
+}
+
+function MostrarDesordenada(palabra)
+{
+    /* Una vez obtenemos la palabra desordenada la muestra en sus respectivos elementos */
+    let activity = document.getElementsByClassName("activity");
+    let arrPalabra = palabra.split("");
+
+    for (let i = 0; i < LogitudaPal(palabra); i++) {
+        activity[i].innerHTML = arrPalabra.shift();
+    }
+}
+
+function mostrarDefs(definitions)
+{
+    /* muestra las definiciones de las palabras en la tabla amarilla */
+    let table = document.getElementsByTagName("table")[1];
+
+    for (let i = 0; i < definitions.length; i++) {
+        let tr = document.createElement("tr")
+        let td = document.createElement("td");
+        td.textContent = definitions[i];
+        table.appendChild(tr).appendChild(td);
+
+        td.style.fontSize = "1.3em";
+        td.style.margin = "1px";
+        td.style.padding = "10px";
+        td.style.backgroundColor = "yellow";
+    }
+}
+
+function clickListeners(td)
+{
+    td.addEventListener("click", function(){
+        if (grabOrDrop == "grab") {
+            grabbed = td.innerHTML;
+            lastTd= td;
+            grabOrDrop = "drop"
+        }else if(grabOrDrop == "drop"){
+            grabbed2 = td.innerHTML;
+            td.innerHTML = grabbed;
+            lastTd.innerHTML = grabbed2;
+            grabOrDrop = "grab";
+        }
+    });
+}
+
+
+/* 
+Pasos para realizar el h)
+1. Cada vez que se le da al titulo cambia de palabra y la desordena
+*/
+
+function LogitudaPal(palabra) {
+    
+    return(palabra.length)
+
+}
+
+function Desordenada(palabra) {
+    let pala=palabra.toLowerCase()
+    let shuffled = pala.split('').sort(function(){return 0.5-Math.random()}).join('');
+    return shuffled;
+}
