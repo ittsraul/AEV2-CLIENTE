@@ -80,8 +80,10 @@ let letra = "";
 let palabra = "";
 let id = 0;
 let url = "";
-let data = [];
-let palabraMostrar = 0;
+let ArrayPalabras = [];
+let Comienzo = false;
+let puntos = 0;
+let primerValor;
 
 
 // Eventos
@@ -116,41 +118,55 @@ siguiente API pública:
 https://api.dictionaryapi.dev/api/v2/entries/en/<word>
 */
 
+
+
 let titulo = document.getElementsByTagName("h1")[0];
-titulo.addEventListener("click", gestionJuego)
+titulo.addEventListener("click", api)
 
-function gestionJuego()
+async function api() 
 {
-    let api = api();
-    console.log(api);
-}
-
-async function api() {
-    let ArrayPalabras = [];
-    for (let i = 0; i < localStorage.length; i++) {
-        palabra = JSON.parse(localStorage.getItem(i));
-        const endpoint = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
-        try {
-            const response = await fetch(endpoint, {cache: 'no-cache'});
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                    return new promise(jsonResponse);
-            }
-        } catch (error) {
-            console.log(error);
-        } 
+    if (ArrayPalabras.length < 1) {
+        for (let i = 0; i < localStorage.length; i++) {
+            palabra = JSON.parse(localStorage.getItem(i));
+            const endpoint = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
+            try {
+                const response = await fetch(endpoint, {cache: 'no-cache'});
+                if (response.ok) {
+                    const jsonResponse = await response.json();
+                        ArrayPalabras.push(jsonResponse);
+                }
+            } catch (error) {
+                console.log(error);
+            } 
+        }
     }
-    console.log(ArrayPalabras[palabraMostrar][0].word);
-    ElementsGenerar(LogitudaPal(ArrayPalabras[palabraMostrar][0].word))
-    MostrarDesordenada(Desordenada(ArrayPalabras[palabraMostrar][0].word));
+
+    if (Comienzo) {
+        let resultado = recogerPalabra()
+        console.log(resultado + " " + primerValor[0].word);
+        if (resultado == primerValor[0].word) {
+            puntos++;
+            console.log(puntos);
+        }
+    }
+
+    primerValor = ArrayPalabras.shift();
+
+    ElementsGenerar(LogitudaPal(primerValor[0].word))
+    MostrarDesordenada(Desordenada(primerValor[0].word));
     limpiarDefs();
-    let definitions = ArrayPalabras[palabraMostrar][0].meanings[0].definitions;
+
+    let definitions = primerValor[0].meanings[0].definitions;
     let defArray = [];
+
     for (let i = 0; i < definitions.length; i++) {
         defArray.push(definitions[i]["definition"])
     }
     mostrarDefs(defArray);
 
+
+
+    Comienzo = true;
 };
 
 /* final NATÀLIA */
@@ -237,6 +253,17 @@ function limpiarDefs()
 {
     let table = document.getElementsByTagName("table")[1];
     table.innerHTML = "";
+}
+
+function recogerPalabra()
+{
+    let table = document.getElementsByTagName("table")[0];
+    let elems = table.getElementsByClassName("activity")
+    let resultado = "";
+   for (let i = 0; i < elems.length; i++) {
+    resultado += elems[i].innerHTML;
+   }
+   return resultado;
 }
 
 /* 
