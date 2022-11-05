@@ -47,19 +47,18 @@ function PasaPalabra(palabra) {
     let current = 0;
     let h1 = document.getElementsByTagName("h1")[0];
   
-
+/* AddEventLisener hay que cambiarlo ya hay uno creado */
     h1.addEventListener("click", function(){
         if(current == palabra.length - 1){
-            current = 0;
+            current = 1;
         } else {
-            current += 1;
+            current += 2;
         }
-
-        
-     
-    
        console.log(palabra[current]);
-       
+       if(palabra[current]==undefined){
+        alert("Para")
+       }
+
 
     });
     
