@@ -131,7 +131,7 @@ function api(e) {
                 
                 ElementsGenerar(LogitudaPal(data[0].word))
                 MostrarDesordenada(Desordenada(data[0].word));
-
+                limpiarDefs();
                 let definitions = data[0].meanings[0].definitions;
                 let defArray = [];
                 for (let i = 0; i < definitions.length; i++) {
@@ -224,6 +224,11 @@ function clickListeners(td)
     });
 }
 
+function limpiarDefs()
+{
+    let table = document.getElementsByTagName("table")[1];
+    table.innerHTML = "";
+}
 
 /* 
 Pasos para realizar el h)
