@@ -81,6 +81,7 @@ let palabra = "";
 let id = 0;
 let url = "";
 let data = [];
+let palabraMostrar = 0;
 
 
 // Eventos
@@ -116,34 +117,40 @@ https://api.dictionaryapi.dev/api/v2/entries/en/<word>
 */
 
 let titulo = document.getElementsByTagName("h1")[0];
-titulo.addEventListener("click", api)
+titulo.addEventListener("click", gestionJuego)
 
-function api(e) {
-    e.preventDefault();
+function gestionJuego()
+{
+    let api = api();
+    console.log(api);
+}
+
+async function api() {
     let ArrayPalabras = [];
     for (let i = 0; i < localStorage.length; i++) {
         palabra = JSON.parse(localStorage.getItem(i));
-        url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                ArrayPalabras.push(data[0].word);
-                
-                ElementsGenerar(LogitudaPal(data[0].word))
-                MostrarDesordenada(Desordenada(data[0].word));
-                limpiarDefs();
-                let definitions = data[0].meanings[0].definitions;
-                let defArray = [];
-                for (let i = 0; i < definitions.length; i++) {
-                    defArray.push(definitions[i]["definition"])
-                }
-                mostrarDefs(defArray);
-            })
-            .catch(error => console.log(error));
-
+        const endpoint = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
+        try {
+            const response = await fetch(endpoint, {cache: 'no-cache'});
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                    return new promise(jsonResponse);
+            }
+        } catch (error) {
+            console.log(error);
+        } 
     }
-    console.log(ArrayPalabras);
-/*     return data; */
+    console.log(ArrayPalabras[palabraMostrar][0].word);
+    ElementsGenerar(LogitudaPal(ArrayPalabras[palabraMostrar][0].word))
+    MostrarDesordenada(Desordenada(ArrayPalabras[palabraMostrar][0].word));
+    limpiarDefs();
+    let definitions = ArrayPalabras[palabraMostrar][0].meanings[0].definitions;
+    let defArray = [];
+    for (let i = 0; i < definitions.length; i++) {
+        defArray.push(definitions[i]["definition"])
+    }
+    mostrarDefs(defArray);
+
 };
 
 /* final NATÀLIA */
