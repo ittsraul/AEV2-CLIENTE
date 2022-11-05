@@ -4,6 +4,8 @@ let definiciones = [["Encoded computer instructions, usually modifiable (unless 
 
 let grabOrDrop = "grab";
 let grabbed = "";
+let grabbed2 = "";
+let lastTd = "";
 
 ElementsGenerar(LogitudaPal(palabras[0]))
 MostrarDesordenada(Desordenada(palabras[0]));
@@ -64,42 +66,18 @@ function clickListeners(td)
 {
     td.addEventListener("click", function(){
         if (grabOrDrop == "grab") {
-            grabbed = td;
+            grabbed = td.innerHTML;
+            lastTd= td;
+            grabOrDrop = "drop"
+        }else if(grabOrDrop == "drop"){
+            grabbed2 = td.innerHTML;
+            td.innerHTML = grabbed;
+            lastTd.innerHTML = grabbed2;
+            grabOrDrop = "grab";
         }
     });
 }
 
-    //para raul
-let palabraPrueba = "";
-document.addEventListener("keydown", function(e) {
-    palabraPrueba += e.key;
-    comprobarSecreto();
-})
-console.log("abrakadabra".length)
-function comprobarSecreto()
-{
-    if (palabraPrueba.length == 11) {
-        
-
-        for (let i = 0; i < palabraPrueba.length; i++) {
-            if (palabraPrueba == "abrakadabra") {
-                console.log("funciona")
-                palabraPrueba = "";
-                return true;
-            }else{
-                palabraPrueba = "";
-            }
-        }
-    }
-}
-
-/* 
-Pasos para realizar el g)
-1. Evento de click
-    1.1 Seleccionar primer elemento
-    1.2 Seleccionar segundo elemento
-    1.3 Cambiar la posición
-*/
 
 /* 
 Pasos para realizar el h)
