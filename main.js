@@ -35,7 +35,7 @@ function checkAWord()
     if (letras.length == 11) {
         for (let i = 0; i < letras.length; i++) {
             if (letras == "abrakadabra") {
-                console.log("funciona y tiene " + letras.length + " de longitud");
+               
                 letras = ""; 
                 CreateKeyboard();
             }else{
@@ -61,7 +61,7 @@ function checkDWord() {
     if (letrasDesaparcer.length == 11) {
         for (let j = 0; j < letrasDesaparcer.length; j++) {
             if (letrasDesaparcer == "patadecabra") {
-                console.log("funciona y tiene " + letrasDesaparcer.length + " de longitud");
+                
                 letrasDesaparcer="";
                 Deleteboard();
             } else {
@@ -74,8 +74,6 @@ function checkDWord() {
 
 /* NATÀLIA */
 
-// Variables    
-/* let teclado = document.getElementById("keyboard-cont"); */
 let letra = "";
 let palabra = "";
 let id = 0;
@@ -86,22 +84,19 @@ let puntos = 0;
 let primerValor;
 
 
-// Eventos
-/* evento de ratón click sobre las letras del teclado de forma que se irán almacenando en una variable cada una de las letras pulsadas */
 keyboard.addEventListener("click", crearParaula ) 
 
 function crearParaula(event) {
     letra = event.target.textContent;
-    //que no guarde el valor de la letra enter
+    
     if (letra != "Enter") {
     palabra += letra;
-    console.log(palabra);
+    
     }
 };
 
 
-/* evento de teclado para que cuando se pulse la tecla ENTER se guarde la palabra en el navegador, de forma que los datos persistan cuando se cierren las pestañas o se refresque la página */
-/* enter = document.getElementsByTagName("form")[0]; */
+
 
 keyboard.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -110,13 +105,6 @@ keyboard.addEventListener("submit", function (e) {
     palabra = "";
 });
 
-
-/* Cuando un usuario haga click sobre el título de primer nivel “Let’s Play!” se 
-iniciará el juego. Para ello, se recogerán una a una las palabras guardadas en el 
-navegador y se realizará con cada una de ellas una petición HTTP GET a la 
-siguiente API pública:
-https://api.dictionaryapi.dev/api/v2/entries/en/<word>
-*/
 
 
 
@@ -150,7 +138,7 @@ async function api()
 
     if (Comienzo) {
         let resultado = recogerPalabra()
-        console.log(resultado + " " + primerValor[0].word);
+        
         if (resultado == primerValor[0].word) {
             puntos++;
         }
@@ -294,11 +282,6 @@ function calcularResultado()
     result.innerHTML = puntos + "/" + cantPalabras;
     document.body.appendChild(result);
 }
-
-/* 
-Pasos para realizar el h)
-1. Cada vez que se le da al titulo cambia de palabra y la desordena
-*/
 
 function LogitudaPal(palabra) {
     
