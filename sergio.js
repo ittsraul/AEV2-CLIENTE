@@ -2,6 +2,10 @@ let palabras = ["Software", "Developer", "Engineer", "Ratio", "Flash"];
 
 let definiciones = [["Encoded computer instructions, usually modifiable (unless stored in some form of unalterable memory such as ROM)", "una patata"], ["A real estate developer; a person or company who prepares a parcel of land for sale, or creates structures on that land."], ["ingeniero"], ["Ratio"], ["Flash"]];
 
+let keyboard = document.getElementById("keyboard-cont");
+let activity = document.getElementsByTagName("table")[0];
+let ache1 = document.getElementsByTagName("h1")[0];
+let body = document.body;
 
 LogitudaPal(palabras[0])
 
@@ -56,7 +60,18 @@ function PasaPalabra(palabra) {
         }
        console.log(palabra[current]);
        if(palabra[current]==undefined){
-        alert("Para")
+
+        
+        body.removeChild(ache1);
+
+        body.removeChild(keyboard);
+        
+        body.removeChild(activity);
+        
+        document.body.innerHTML="<h1>SCORE</h1> <br><h1>Valor de las victorias</h1>";
+       
+        
+        
        }
 
 
