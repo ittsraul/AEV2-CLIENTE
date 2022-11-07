@@ -132,6 +132,8 @@ async function api() {
         }
     }
     /* Tino */
+
+    // Cada vez que se llame a la api, excepto la primera vez, calculará si la palabra actual suma puntos.
     if (Comienzo) {
         let resultado = recogerPalabra()
 
