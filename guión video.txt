@@ -1,0 +1,19 @@
+Tino:
+function api() 
+	desde if (comienzo)
+
+function ElementsGenerar()
+
+function removeAll()
+
+function MostrarDesordenada()
+
+function mostrarDefs()
+
+function clickListeners()
+
+function limpiarDefs()
+
+function recogerPalabra()
+
+function calcularResultado()

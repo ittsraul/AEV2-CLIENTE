@@ -105,8 +105,6 @@ keyboard.addEventListener("submit", function (e) {
 });
 
 
-
-
 let titulo = document.getElementsByTagName("h1")[0];
 titulo.addEventListener("click", api)
 
@@ -133,7 +131,7 @@ async function api() {
             calc = true;
         }
     }
-
+    /* Tino */
     if (Comienzo) {
         let resultado = recogerPalabra()
 
@@ -141,6 +139,7 @@ async function api() {
             puntos++;
         }
     }
+
     if (calc) {
         calcularResultado(puntos);
         return "";
