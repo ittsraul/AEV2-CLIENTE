@@ -17,28 +17,27 @@ Deleteboard();
 let letras = "";
 
 //Fucnction for create the keyboard
-function CreateKeyboard(){
+function CreateKeyboard() {
     body.appendChild(keyboard);
-} 
+}
 
 //function for make keyboard event to unlock it
 function AppearsKeyboard() {
     body.addEventListener("keydown", (event) => {
-            letras += event.key;
-            checkAWord();
+        letras += event.key;
+        checkAWord();
     });
 }
 
 //function for check the words we introduced in the keyboard
-function checkAWord()
-{
+function checkAWord() {
     if (letras.length == 11) {
         for (let i = 0; i < letras.length; i++) {
             if (letras == "abrakadabra") {
-               
-                letras = ""; 
+
+                letras = "";
                 CreateKeyboard();
-            }else{
+            } else {
                 letras = "";
             }
         }
@@ -46,14 +45,14 @@ function checkAWord()
 }
 
 //Call the function to make Appears the keyboard
-AppearsKeyboard(); 
+AppearsKeyboard();
 
 let letrasDesaparcer = "";
 //Function to make Disappears the keyboard
-    body.addEventListener("keydown", (event) => {
-        letrasDesaparcer += event.key;
-        checkDWord();
-    });
+body.addEventListener("keydown", (event) => {
+    letrasDesaparcer += event.key;
+    checkDWord();
+});
 
 
 //function to make check of the words
@@ -61,15 +60,15 @@ function checkDWord() {
     if (letrasDesaparcer.length == 11) {
         for (let j = 0; j < letrasDesaparcer.length; j++) {
             if (letrasDesaparcer == "patadecabra") {
-                
-                letrasDesaparcer="";
+
+                letrasDesaparcer = "";
                 Deleteboard();
             } else {
-                letrasDesaparcer="";
+                letrasDesaparcer = "";
             }
         }
     }
-} 
+}
 /* End Raúl */
 
 /* NATÀLIA */
@@ -84,14 +83,14 @@ let puntos = 0;
 let primerValor;
 
 
-keyboard.addEventListener("click", crearParaula ) 
+keyboard.addEventListener("click", crearParaula)
 
 function crearParaula(event) {
     letra = event.target.textContent;
-    
+
     if (letra != "Enter") {
-    palabra += letra;
-    
+        palabra += letra;
+
     }
 };
 
@@ -111,34 +110,33 @@ keyboard.addEventListener("submit", function (e) {
 let titulo = document.getElementsByTagName("h1")[0];
 titulo.addEventListener("click", api)
 
-async function api() 
-{
+async function api() {
     let calc = false;
     if (ArrayPalabras.length < 1) {
         if (!Comienzo) {
-            
+
 
             for (let i = 0; i < localStorage.length; i++) {
                 palabra = JSON.parse(localStorage.getItem(i));
                 const endpoint = "https://api.dictionaryapi.dev/api/v2/entries/en/" + palabra;
                 try {
-                    const response = await fetch(endpoint, {cache: 'no-cache'});
+                    const response = await fetch(endpoint, { cache: 'no-cache' });
                     if (response.ok) {
                         const jsonResponse = await response.json();
-                            ArrayPalabras.push(jsonResponse);
+                        ArrayPalabras.push(jsonResponse);
                     }
                 } catch (error) {
                     console.log(error);
-                } 
+                }
             }
-        }else{
+        } else {
             calc = true;
         }
     }
 
     if (Comienzo) {
         let resultado = recogerPalabra()
-        
+
         if (resultado == primerValor[0].word) {
             puntos++;
         }
@@ -147,7 +145,7 @@ async function api()
         calcularResultado(puntos);
         return "";
     }
-    
+
     primerValor = ArrayPalabras.shift();
 
     ElementsGenerar(LogitudaPal(primerValor[0].word))
@@ -180,7 +178,7 @@ let lastTd = "";
 
 
 
-function ElementsGenerar(cantElements){
+function ElementsGenerar(cantElements) {
     /* Genera los cuadrados azules necesarios para cada palabra */
     let table = document.getElementsByTagName("table")[0];
     let elem = table.getElementsByClassName("activity")[0];
@@ -195,15 +193,13 @@ function ElementsGenerar(cantElements){
     }
 }
 
-function removeAll(table)
-{
+function removeAll(table) {
     /* limpia todos los cuadrados azules. Se llama desde ElementsGenerar */
 
     table.innerHTML = "";
 }
 
-function MostrarDesordenada(palabra)
-{
+function MostrarDesordenada(palabra) {
     /* Una vez obtenemos la palabra desordenada la muestra en sus respectivos elementos */
     let activity = document.getElementsByClassName("activity");
     let arrPalabra = palabra.split("");
@@ -213,8 +209,7 @@ function MostrarDesordenada(palabra)
     }
 }
 
-function mostrarDefs(definitions)
-{
+function mostrarDefs(definitions) {
     /* muestra las definiciones de las palabras en la tabla amarilla */
     let table = document.getElementsByTagName("table")[1];
 
@@ -231,14 +226,13 @@ function mostrarDefs(definitions)
     }
 }
 
-function clickListeners(td)
-{
-    td.addEventListener("click", function(){
+function clickListeners(td) {
+    td.addEventListener("click", function () {
         if (grabOrDrop == "grab") {
             grabbed = td.innerHTML;
-            lastTd= td;
+            lastTd = td;
             grabOrDrop = "drop"
-        }else if(grabOrDrop == "drop"){
+        } else if (grabOrDrop == "drop") {
             grabbed2 = td.innerHTML;
             td.innerHTML = grabbed;
             lastTd.innerHTML = grabbed2;
@@ -247,25 +241,22 @@ function clickListeners(td)
     });
 }
 
-function limpiarDefs()
-{
+function limpiarDefs() {
     let table = document.getElementsByTagName("table")[1];
     table.innerHTML = "";
 }
 
-function recogerPalabra()
-{
+function recogerPalabra() {
     let table = document.getElementsByTagName("table")[0];
     let elems = table.getElementsByClassName("activity")
     let resultado = "";
-   for (let i = 0; i < elems.length; i++) {
-    resultado += elems[i].innerHTML;
-   }
-   return resultado;
+    for (let i = 0; i < elems.length; i++) {
+        resultado += elems[i].innerHTML;
+    }
+    return resultado;
 }
 
-function calcularResultado()
-{
+function calcularResultado() {
     let table = document.getElementsByTagName("table")[0];
     let table2 = document.getElementsByTagName("table")[1];
     table.innerHTML = "";
@@ -284,13 +275,13 @@ function calcularResultado()
 }
 
 function LogitudaPal(palabra) {
-    
-    return(palabra.length)
+
+    return (palabra.length)
 
 }
 
 function Desordenada(palabra) {
-    let pala=palabra.toLowerCase()
-    let shuffled = pala.split('').sort(function(){return 0.5-Math.random()}).join('');
+    let pala = palabra.toLowerCase()
+    let shuffled = pala.split('').sort(function () { return 0.5 - Math.random() }).join('');
     return shuffled;
 }
